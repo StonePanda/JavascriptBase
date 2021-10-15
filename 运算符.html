@@ -1,11 +1,106 @@
 <HTML>
+
 <head>
+
 </head>
+
+
 <body>
     <h1>运算符</h1>
-    <p>JS拥有二元和一元运算符，和一个特殊的三元运算符</p>
+    <p>JS拥有二元和一元运算符，和一个特殊的三元运算符，这里主要总结一下一些不太常见但是有需要记住的运算符。</p>
     <h2>赋值运算符</h2>
-    <code>let x=1 <br> let y=2</code>
-    <code>x=y <br> console.log(x,y)</code>
+    <textarea rows="2" readonly>
+        let x=2
+        let y=3
+    </textarea>
+    <div id="division-assignment">
+        <h3>除法赋值</h3>
+        <textarea rows="2" readonly>
+            x/=y
+            console.log(x,y) //注意js里没有整除这个概念
+        </textarea>
+        <br>
+        <button @click="x/=y">除法赋值结果</button>
+        <br>
+        <textarea rows="1" readonly>
+            {{x}} {{y}}
+        </textarea>
+    </div>
+    <div id="remainder-assignment">
+        <h3>求余赋值</h3>
+        <textarea rows="2" readonly>
+            x%=y
+            console.log(x,y)
+        </textarea>
+        <br>
+        <button @click="x%=y">求余赋值结果</button>
+        <br>
+        <textarea rows="1" readonly>
+            {{x}} {{y}}
+        </textarea>
+    </div>
+    <div id="exponentiation-assignment">
+        <h3>求幂赋值</h3>
+        <textarea rows="2" readonly>
+            x**=y
+            console.log(x,y) //幂符号要记住
+        </textarea>
+        <br>
+        <button @click="x**=y">求幂赋值结果</button>
+        <br>
+        <textarea rows="1" readonly>
+            {{x}} {{y}}
+        </textarea>
+    </div>
+
 </body>
+<style>
+    body {
+        padding-left: 30%;
+    }
+    
+    textarea {
+        width: 50%;
+        white-space: pre-line;
+        background-color: rgb(245, 245, 245);
+        border-left-color: slategray;
+        border-left-width: 5px;
+        border-top-color: darkgray;
+        border-bottom-color: darkgray;
+        margin-bottom: 5px;
+        margin-top: 5px;
+    }
+    
+    p {
+        width: 50%;
+    }
+</style>
+<script src="https://unpkg.com/vue@next"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                x: 2,
+                y: 3
+            }
+        }
+    }).mount('#division-assignment')
+    Vue.createApp({
+        data() {
+            return {
+                x: 2,
+                y: 3
+            }
+        }
+    }).mount('#remainder-assignment')
+    Vue.createApp({
+        data() {
+            return {
+                x: 2,
+                y: 3
+            }
+        }
+    }).mount('#exponentiation-assignment')
+</script>
+
 </HTML>
