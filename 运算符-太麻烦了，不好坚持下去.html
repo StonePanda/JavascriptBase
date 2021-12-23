@@ -1,7 +1,7 @@
 <HTML>
 
 <head>
-
+    <script src="https://unpkg.com/vue@next"></script>
 </head>
 
 
@@ -9,13 +9,11 @@
     <h1>运算符</h1>
     <p>JS拥有二元和一元运算符，和一个特殊的三元运算符，这里主要总结一下一些不太常见但是有需要记住的运算符。</p>
     <h2>赋值运算符</h2>
-    <textarea rows="2" readonly>
-        let x=2
-        let y=3
-    </textarea>
     <div id="division-assignment">
         <h3>除法赋值</h3>
-        <textarea rows="2" readonly>
+        <textarea rows="4" readonly>
+            let x=2
+            let y=3
             x/=y
             console.log(x,y) //注意js里没有整除这个概念
         </textarea>
@@ -28,7 +26,9 @@
     </div>
     <div id="remainder-assignment">
         <h3>求余赋值</h3>
-        <textarea rows="2" readonly>
+        <textarea rows="4" readonly>
+            let x=4
+            let y=3
             x%=y
             console.log(x,y)
         </textarea>
@@ -41,7 +41,9 @@
     </div>
     <div id="exponentiation-assignment">
         <h3>求幂赋值</h3>
-        <textarea rows="2" readonly>
+        <textarea rows="4" readonly>
+            let x=2
+            let y=3
             x**=y
             console.log(x,y) //幂符号要记住
         </textarea>
@@ -52,7 +54,46 @@
             {{x}} {{y}}
         </textarea>
     </div>
+    <div id="bitwiseor-assignment">
+        <h3>按位或赋值</h3>
+        <textarea rows="6" readonly>
+            let x=false
+            let y=true
+            x|=y
+            //true和false的或就必须得是x=x||y
+            //true和false用其他运算符都会自动转换成0 1
+            console.log(x,y)
+        </textarea>
+        <br>
+        <button @click="x|=y">按位或赋值结果</button>
+        <br>
+        <textarea rows="1" readonly>
+            {{x}} {{y}}
+        </textarea>
+    </div>
 
+    <h2>比较运算符</h2>
+    <div id="undefinedequal-assignment">
+        <h3>等于</h3>
+        <textarea rows="10" readonly>
+            // 等于判断主要是注意和严格等于的区分
+            // ==也叫抽象相等比较
+            // js中除了这两个值比较操作之外还有Object.is
+            // Object.is可以之后再总结
+            // ==和严格等于的最大区别是：
+            // ==会进行类型转换
+            let x
+            let y
+            console.log(x==y) // undefined==undefined true
+            // 上面同理的是null==null
+        </textarea>
+        <br>
+        <button @click="test">抽象比较结果</button>
+        <br>
+        <textarea rows="1" readonly>
+            {{result}}
+        </textarea>
+    </div>
 </body>
 <style>
     body {
@@ -75,7 +116,7 @@
         width: 50%;
     }
 </style>
-<script src="https://unpkg.com/vue@next"></script>
+
 <script>
     Vue.createApp({
         data() {
@@ -88,7 +129,7 @@
     Vue.createApp({
         data() {
             return {
-                x: 2,
+                x: 4,
                 y: 3
             }
         }
@@ -101,6 +142,28 @@
             }
         }
     }).mount('#exponentiation-assignment')
+    Vue.createApp({
+        data() {
+            return {
+                x: true,
+                y: false
+            }
+        }
+    }).mount('#bitwiseor-assignment')
+    Vue.createApp({
+        data() {
+            return {
+                result: undefined
+            }
+        },
+        methods: {
+            test() {
+                let x
+                let y
+                this.result = (x == y)
+            }
+        }
+    }).mount('#undefinedequal-assignment')
 </script>
 
 </HTML>
